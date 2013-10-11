@@ -1,0 +1,22 @@
+#open the datafile
+#data = open('/home/flgomez10/lum-mass/data/MD_3840_Planck1/BDM/test.dat',"r")
+data = open('/home/flgomez10/lum-mass/data/MD_3840_Planck1/BDM/reduced_catshortV_007.dat',"r")
+#read and ignore header lines
+data.seek(0)
+for i in range(0,17):
+    data.readline()
+    
+mass_min = 5e+10
+mass_max = 5e+10
+    
+for line in data:
+    line = line.strip()
+    columns = line.split()
+    mass = float(columns[3])
+#    print mass
+    if( mass_min > mass):
+        mass_min = mass
+    if( mass_max < mass):
+        mass_max = mass
+            
+print "Lower mass limit = ", mass_min, "\nUpper mass limit = ", mass_max
